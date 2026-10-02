@@ -25,6 +25,7 @@
 
 	let isLoggedIn = $state(false);
 	let id = $state('');
+	
 	let username = $state('');
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	let loadChat = $state<any>(null);
@@ -120,15 +121,15 @@
 	</section>
 {/if}
 
-<main class="flex min-h-screen flex-col items-center justify-center gap-4">
+<main class="flex min-h-dvh flex-col items-center justify-center gap-4 px-3 py-20 sm:px-6 sm:py-8">
     <header>
-        <div class="fixed top-5 right-10">
+		<div class="fixed top-4 right-4 z-10 sm:top-5 sm:right-8">
             <ModeToggle />
         </div>
-        <h1 class="pb-10 text-9xl font-black">Chatty App</h1>
+		<h1 class="pb-4 text-center text-5xl font-black sm:pb-8 sm:text-7xl lg:text-9xl">Chatty App</h1>
     </header>
 	
-	<ScrollArea class="h-150 w-1/3 rounded-md border p-4" bind:viewportRef={chatHistory}>
+	<ScrollArea class="h-[60dvh] min-h-64 w-full max-w-3xl rounded-md border p-3 sm:h-150 sm:p-4" bind:viewportRef={chatHistory}>
 		<div class="h-full">
 			{#each messages as msg (msg.messageId)}
 				{#if !msg.system}
@@ -170,14 +171,14 @@
 		</div>
 	</ScrollArea>
 
-	<footer class="grid w-1/3 grid-cols-[1fr_auto] items-center gap-2">
+	<footer class="grid w-full max-w-3xl grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
 		<Input
 			placeholder="Message..."
 			type="text"
 			bind:value={inputField}
             oninput={handleTyping}
 			onkeydown={(e) => { if (e.key === "Enter") handleSend() }} 
-			class="max-w-300"
+			class="min-w-0 w-full"
 			maxlength={50}
 			minlength={1}
 		/>
